@@ -1,4 +1,3 @@
-function VoiceRecognition() {
 // Test browser support
 window.SpeechRecognition = window.SpeechRecognition       ||
                            window.webkitSpeechRecognition ||
@@ -24,7 +23,6 @@ else {
         transcription.textContent = '';
 
         var result;
-        var win;
 
         for (var i = event.resultIndex; i < event.results.length; i++) {
 
@@ -83,7 +81,6 @@ else {
             }
         }
     };
-}
 
     // Listen for errors
     recognizer.onerror = function(event) {
