@@ -114,7 +114,7 @@
     </div>
 
     <p class="game-explanation">
-      <strong class="important">How to play:</strong> Use your <strong>arrow keys</strong> to move the tiles. When two tiles with the same number touch, they <strong>merge into one!</strong>
+      <strong class="important">How to play!:</strong> Use your <strong>arrow keys</strong> to move the tiles. When two tiles with the same number touch, they <strong>merge into one!</strong>
     </p>
     <hr>
     <p>
@@ -124,26 +124,34 @@
     <p>
     Created by <a href="http://gabrielecirulli.com" target="_blank">Gabriele Cirulli.</a> Based on <a href="https://itunes.apple.com/us/app/1024!/id823499224" target="_blank">1024 by Veewo Studio</a> and conceptually similar to <a href="http://asherv.com/threes/" target="_blank">Threes by Asher Vollmer.</a>
     </p>
-	
-  </div>
 
+    <p>
+    <strong class="important">Transcription:</strong>
+    <textarea id="transcription" readonly="readonly"></textarea>
+    </p>
+
+    <p>
     <span>Results:</span>
     <label><input type="radio" name="recognition-type" value="interim" checked="checked" /> Interim</label>
     <label><input type="radio" name="recognition-type" value="final" /> Final only</label>
+    </p>
 
-    <h3>Log</h3>
+    <p>
+    <strong class="important">Log:</strong>
     <div id="log"></div>
     <div class="buttons-wrapper">
       <button id="button-play-ws" class="button-demo">Play demo</button>
       <button id="button-stop-ws" class="button-demo">Stop demo</button>
       <button id="clear-all" class="button-demo">Clear all</button>
     </div>
+    </p>
 
+    </div>
 
     <span id="ws-unsupported" class="hidden">API not supported</span>
 
-    <script src="recognition.js"></script>
-	
+    <!--<script src="recognition.js"></script>--->
+
   <script src="js/bind_polyfill.js"></script>
   <script src="js/classlist_polyfill.js"></script>
   <script src="js/animframe_polyfill.js"></script>
