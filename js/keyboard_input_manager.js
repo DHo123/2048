@@ -177,6 +177,16 @@ KeyboardInputManager.prototype.listen = function () {
                       // alert("resetting zoom to 100%")
                       document.body.style.zoom = 1.0;
                   }
+
+                  /* Voice commands for scrolling control
+                     1. Scroll to top of the game container */
+                  if (result.indexOf("scroll to game") > -1) {
+                      var gameContainer = document.getElementsByClassName("game-container")[0];
+                      var gameContainerY = gameContainer.getBoundingClientRect().top;
+                      $('html, body').animate({
+                         'scrollTop': gameContainerY
+                      });
+                  }
               }
               else if(stop == 0) {
                 transcription.textContent += result;
