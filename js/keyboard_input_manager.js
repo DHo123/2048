@@ -143,6 +143,57 @@ KeyboardInputManager.prototype.listen = function () {
                   if (result.indexOf("continue") > -1) {
                       self.emit("keepPlaying");
                   }
+
+                  /* Voice commands for page zoom control
+                     1. Zoom in/out by the default 10% or a specified offset
+                     2. Zoom to a specified absolute percentage
+                     3. Reset zoom to 100% */
+                  if (result.indexOf("zoom in") > -1 || result.indexOf("zoom out") > -1) {
+                      var curZoom = parseFloat(document.body.style.zoom);
+                      var zoomStep = 10;               // 10% step by default
+                      var numericMatches = result.match(/[0-9]+$/);
+
+                      if (isNaN(curZoom)) {
+                         curZoom = 1.0;
+                      }
+                      if (numericMatches != null && numericMatches.length > 0) {
+                         zoomStep = parseFloat(numericMatches[0]);
+                      }
+
+                      if (result.indexOf("in") > -1) { // Zoom in
+                         curZoom += zoomStep / 100;
+                      }
+                      else {                           // Zoom out
+                         curZoom -= zoomStep / 100;
+                      }
+                      // alert("zooming to " + curZoom);
+                      document.body.style.zoom = curZoom;
+                  }
+                  if (result.indexOf("set zoom ") > -1) {
+                      var numericMatches = result.match(/[0-9]+$/);
+                      if (numericMatches.length > 0) {
+                         var newZoom = parseFloat(numericMatches[0]);
+                         // alert("zooming to " + newZoom);
+                         document.body.style.zoom = newZoom / 100;
+                      }
+                      else {
+                         alert("set zoom: must specify percentage to zoom to");
+                      }
+                  }
+                  if (result.indexOf("reset zoom") > -1) {
+                      // alert("resetting zoom to 100%")
+                      document.body.style.zoom = 1.0;
+                  }
+
+                  /* Voice commands for scrolling control
+                     1. Scroll to top of the game container */
+                  if (result.indexOf("scroll to game") > -1) {
+                      var gameContainer = document.getElementsByClassName("game-container")[0];
+                      var gameContainerY = gameContainer.getBoundingClientRect().top;
+                      $('html, body').animate({
+                         'scrollTop': gameContainerY
+                      });
+                  }
               }
               else if(stop == 0) {
                 transcription.textContent += result;

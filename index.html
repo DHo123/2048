@@ -52,8 +52,14 @@
     </div>
 
     <div class="above-game">
-      <p class="game-intro">Join the numbers and get to the <strong>2048 tile!</strong></p>
+      <!--<p class="game-intro">Join the numbers and get to the <strong>2048 tile!</strong></p>-->
       <a class="restart-button">New Game</a>
+
+      <div class="buttons-wrapper">
+        <button id="button-play-ws" class="voice-button">Play demo</button>
+        <button id="button-stop-ws" class="voice-button">Stop demo</button>
+        <button id="clear-all" class="voice-button">Clear all</button>
+      </div>
     </div>
 
     <div class="game-container">
@@ -113,18 +119,6 @@
       </div>
     </div>
 
-    <p class="game-explanation">
-      <strong class="important">How to play!:</strong> Use your <strong>arrow keys</strong> to move the tiles. When two tiles with the same number touch, they <strong>merge into one!</strong>
-    </p>
-    <hr>
-    <p>
-    <strong class="important">Note:</strong> The game on <a href="http://git.io/2048">this site</a> is the original version of 2048. Apps for <a href="https://itunes.apple.com/us/app/2048-by-gabriele-cirulli/id868076805" target="_blank">iOS</a> and <a href="https://play.google.com/store/apps/details?id=com.gabrielecirulli.app2048" target="_blank">Android</a> are also available. Other versions are derivatives or fakes, and should be used with caution.
-    </p>
-    <hr>
-    <p>
-    Created by <a href="http://gabrielecirulli.com" target="_blank">Gabriele Cirulli.</a> Based on <a href="https://itunes.apple.com/us/app/1024!/id823499224" target="_blank">1024 by Veewo Studio</a> and conceptually similar to <a href="http://asherv.com/threes/" target="_blank">Threes by Asher Vollmer.</a>
-    </p>
-
     <p>
     <strong class="important">Transcription:</strong>
     <textarea id="transcription" readonly="readonly"></textarea>
@@ -135,14 +129,21 @@
     <p>
     <strong class="important">Log:</strong>
     <div id="log"></div>
-    <div class="buttons-wrapper">
-      <button id="button-play-ws" class="button-demo">Play demo</button>
-      <button id="button-stop-ws" class="button-demo">Stop demo</button>
-      <button id="clear-all" class="button-demo">Clear all</button>
-    </div>
     </p>
 
-    </div>
+    <p class="game-explanation">
+      <strong class="important">How to play!:</strong> Use your <strong>arrow keys</strong> to move the tiles. When two tiles with the same number touch, they <strong>merge into one!</strong>
+    </p>
+    <hr>
+    <p>
+    <strong class="important">Note:</strong> The game on <a href="http://git.io/2048">this site</a> is the original version of 2048. Apps for <a href="https://itunes.apple.com/us/app/2048-by-gabriele-cirulli/id868076805" target="_blank">iOS</a> and <a href="https://play.google.com/store/apps/details?id=com.gabrielecirulli.app2048" target="_blank">Android</a> are also available. Other versions are derivatives or fakes, and should be used with caution.
+    </p>
+    <hr>
+    <p>
+    Game created by <a href="http://gabrielecirulli.com" target="_blank">Gabriele Cirulli.</a> Based on <a href="https://itunes.apple.com/us/app/1024!/id823499224" target="_blank">1024 by Veewo Studio</a> and conceptually similar to <a href="http://asherv.com/threes/" target="_blank">Threes by Asher Vollmer.</a>
+    </p>
+
+  </div>
 
   <!--<script src="js/recognition.js"></script>--->
   <script src="js/bind_polyfill.js"></script>

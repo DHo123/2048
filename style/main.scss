@@ -97,6 +97,21 @@ h1.title {
   float: left;
 }
 
+.hidden {
+  display: none;
+}
+
+#transcription,
+#log
+{
+  display: block;
+  width: 100%;
+  height: 5em;
+  overflow-y: scroll;
+  border: 1px solid #333333;
+  line-height: 1.3em;
+}
+
 @include keyframes(move-up) {
   0% {
     top: 25px;
@@ -585,6 +600,22 @@ hr {
   h1.title {
     font-size: 27px;
     margin-top: 15px;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+
+  #transcription,
+  #log
+  {
+    display: block;
+    width: 100%;
+    height: 5em;
+    overflow-y: scroll;
+    border: 1px solid #333333;
+    line-height: 1.3em;
   }
 
   .container {
