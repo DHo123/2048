@@ -67,7 +67,10 @@ KeyboardInputManager.prototype.listen = function () {
       var log = document.getElementById('log');
       var snd = new Audio("file.wav");
 
-      recognizer.continuous = true;
+      // Interim results always on for demo purposes.
+      recognizer.interimResults = true;
+
+      recognizer.continuous = false;
 
       // Start recognising
       recognizer.onresult = function(event) {
@@ -75,11 +78,11 @@ KeyboardInputManager.prototype.listen = function () {
 
           var result;
 
+          // Loop to find final result.
           for (var i = event.resultIndex; i < event.results.length; i++) {
-
               result = event.results[i][0].transcript;
 
-              // Stops recognizing when "stop" is heard
+              // Stops recognizing when "stop" is potentially heard
               if (result.indexOf("stop") > -1 && stop == 0) {
                   recognizer.stop();
                   result = result.substring(0, result.indexOf("stop"));
@@ -96,6 +99,10 @@ KeyboardInputManager.prototype.listen = function () {
               // When result is finalized
               if (event.results[i].isFinal) {
                 transcription.textContent = result + ' (Confidence: ' + event.results[i][0].confidence + ')';
+
+                if (event.results[i][0].confidence < 0.5) {
+                      //Do something here if confidence is too low.
+                }
 
                   // First word will be some command.
                   var cmd = result.substr(0,result.indexOf(' '));
@@ -144,13 +151,14 @@ KeyboardInputManager.prototype.listen = function () {
       };
       // Listen for errors
       recognizer.onerror = function(event) {
-          log.innerHTML = 'Recognition error: ' + event.message + '<br />' + log.innerHTML;
+          log.innerHTML = 'Recognition error: ' + event.error + '<br />' + log.innerHTML;
+      };
+
+      recognizer.onend = function(event) {
+          recognizer.start();
       };
 
       document.getElementById('button-play-ws').addEventListener('click', function() {
-          // Set if we need interim results
-          recognizer.interimResults = document.querySelector('input[name="recognition-type"][value="interim"]').checked;
-
           try {
               recognizer.start();
               // Play sound when started

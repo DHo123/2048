@@ -128,12 +128,8 @@
     <p>
     <strong class="important">Transcription:</strong>
     <textarea id="transcription" readonly="readonly"></textarea>
-    </p>
 
-    <p>
-    <span>Results:</span>
-    <label><input type="radio" name="recognition-type" value="interim" checked="checked" /> Interim</label>
-    <label><input type="radio" name="recognition-type" value="final" /> Final only</label>
+    <span id="ws-unsupported" class="hidden">API not supported</span>
     </p>
 
     <p>
@@ -148,10 +144,7 @@
 
     </div>
 
-    <span id="ws-unsupported" class="hidden">API not supported</span>
-
-    <!--<script src="recognition.js"></script>--->
-
+  <!--<script src="js/recognition.js"></script>--->
   <script src="js/bind_polyfill.js"></script>
   <script src="js/classlist_polyfill.js"></script>
   <script src="js/animframe_polyfill.js"></script>
