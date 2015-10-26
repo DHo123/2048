@@ -206,7 +206,9 @@ KeyboardInputManager.prototype.listen = function () {
       };
 
       recognizer.onend = function(event) {
-          recognizer.start();
+          if (stop == 0) {
+            recognizer.start();
+          }
       };
 
       document.getElementById('button-play-ws').addEventListener('click', function() {
@@ -223,6 +225,7 @@ KeyboardInputManager.prototype.listen = function () {
       });
 
       document.getElementById('button-stop-ws').addEventListener('click', function() {
+          stop = 1;
           recognizer.stop();
           log.innerHTML = 'Recognition stopped' + '<br />' + log.innerHTML;
       });
