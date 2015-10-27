@@ -144,6 +144,46 @@ KeyboardInputManager.prototype.listen = function () {
                       self.emit("keepPlaying");
                   }
 
+                   /* Voice commands for scrolling control
++                       1. Scroll to bottom/top over a specified ms duration
++                       2. Scroll down/up by a specified pixel offset */
+                   if (result.indexOf("go down over") > -1) {
+                       var durationMatches = result.match(/[0-9]+$/);
+                       if (durationMatches.length > 0) {
+                          var duration = parseInt(durationMatches[0]);
+                          $('html, body').animate({
+                            'scrollTop': $(document).height()
+                          }, duration);
+                       }
+                   }
+                   if (result.indexOf("go up over") > -1) {
+                       var durationMatches = result.match(/[0-9]+$/);
+                       if (durationMatches.length > 0) {
+                          var duration = parseInt(durationMatches[0]);
+                          $('html, body').animate({
+                            'scrollTop': 0
+                          }, duration);
+                       }
+                   }
+                   if (result.indexOf("go down by") > -1) {
+                       var offsetMatches = result.match(/[0-9]+$/);
+                       if (offsetMatches.length > 0) {
+                          var offset = parseInt(offsetMatches[0]);
+                          $('html, body').animate({
+                            'scrollTop': window.scrollY + offset
+                          }, offset);
+                       }
+                   }
+                   if (result.indexOf("go up by") > -1) {
+                       var offsetMatches = result.match(/[0-9]+$/);
+                       if (offsetMatches.length > 0) {
+                          var offset = parseInt(offsetMatches[0]);
+                          $('html, body').animate({
+                            'scrollTop': window.scrollY - offset
+                          }, offset);
+                       }
+                   }
+                  
                   /* Voice commands for page zoom control
                      1. Zoom in/out by the default 10% or a specified offset
                      2. Zoom to a specified absolute percentage
