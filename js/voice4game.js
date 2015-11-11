@@ -80,6 +80,8 @@ window.Voice4Game = (function() {
                               null;
 
    var stop = 0;
+   var found = 0;
+
    if (window.SpeechRecognition === null) {
        if (Voice4Game.showDebug) {
           document.getElementById('ws-unsupported').classList.remove('hidden');
@@ -107,6 +109,7 @@ window.Voice4Game = (function() {
            // Loop to find final result.
            for (var i = event.resultIndex; i < event.results.length; i++) {
                result = event.results[i][0].transcript;
+               debugRef.log.innerHTML = result + event.results[i][0].confidence + 'Final?' + event.results[i].isFinal + '<br />' + debugRef.log.innerHTML;
 
                // Stops recognizing when "stop" is potentially heard
                if (result.indexOf("stop") > -1 && stop == 0) {
@@ -122,6 +125,18 @@ window.Voice4Game = (function() {
                  result = result.substring(1);
                }
 
+              /*
+              * Check if result matches any registered Voice4Game commands
+              * before final result
+              */
+              for (var voiceCmd in Voice4Game.textToFunc) {
+                 if (result.indexOf(voiceCmd) > -1 && found == 0) {
+                   found = 1;
+                    Voice4Game.textToFunc[voiceCmd](result);
+                    break;
+                 }
+              }
+
                // When result is finalized
                if (event.results[i].isFinal) {
                  debugRef.transcription.textContent = result + ' (Confidence: ' + event.results[i][0].confidence + ')';
@@ -129,25 +144,20 @@ window.Voice4Game = (function() {
                  if (event.results[i][0].confidence < 0.5) {
                    console.log("voice4game error: confidence too low");
                  }
-
-                 /*
-                 * Check if result matches any registered Voice4Game commands
-                 */
-                 for (var voiceCmd in Voice4Game.textToFunc) {
-                    if (result.indexOf(voiceCmd) > -1) {
-                       Voice4Game.textToFunc[voiceCmd](result);
-                       break;
-                    }
-                 }
                }
                else if(stop == 0) {
                  debugRef.transcription.textContent += result;
                }
            }
+           found = 0;
        };
+
        // Listen for errors
        recognizer.onerror = function(event) {
            debugRef.log.innerHTML = 'Recognition error: ' + event.error + '<br />' + debugRef.log.innerHTML;
+           if (event.error == "no-speech") {
+             //Add something here to prevent all the spam
+           }
        };
 
        recognizer.onend = function(event) {
