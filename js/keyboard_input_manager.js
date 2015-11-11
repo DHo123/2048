@@ -62,6 +62,15 @@ KeyboardInputManager.prototype.listen = function () {
     'down': mov(2)
   }, true);
 
+  // Potential "up"
+  Voice4Game.registerVoiceCmd('hot', mov(0));
+  Voice4Game.registerVoiceCmd('how', mov(0));
+  Voice4Game.registerVoiceCmd('top', mov(0));
+
+  // Potential "left"
+  Voice4Game.registerVoiceCmd('black', mov(3));
+  Voice4Game.registerVoiceCmd('flash', mov(3));
+  Voice4Game.registerVoiceCmd('last', mov(3));
   Voice4Game.registerVoiceCmd('left', mov(3));
 
   Voice4Game.registerVoiceCmd('go down over', function(result) {
