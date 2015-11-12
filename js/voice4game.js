@@ -132,19 +132,19 @@ window.Voice4Game = (function() {
                  if (event.results[i][0].confidence < 0.5) {
                    console.log("voice4game error: confidence too low");
                  }
-               }
 
-               /*
-               * Check if result matches any registered Voice4Game commands
-               * before final result
-               */
-               for (var voiceCmd in Voice4Game.textToFunc) {
-                  if (result.indexOf(voiceCmd) > -1) { // && found == 0) {
-                     //found = 1;
-                     Voice4Game.textToFunc[voiceCmd](result);
-                     //debugRef.log.innerHTML = 'I\'m Here! found: ' + found + '<br />' + debugRef.log.innerHTML;
-                     break;
-                  }
+                 /*
+                 * Check if result matches any registered Voice4Game commands
+                 * before final result
+                 */
+                 for (var voiceCmd in Voice4Game.textToFunc) {
+                    if (result.indexOf(voiceCmd) > -1) { // && found == 0) {
+                       //found = 1;
+                       Voice4Game.textToFunc[voiceCmd](result);
+                       //debugRef.log.innerHTML = 'I\'m Here! found: ' + found + '<br />' + debugRef.log.innerHTML;
+                       break;
+                    }
+                 }
                }
                else if(stop == 0) {
                  debugRef.transcription.textContent += result;
